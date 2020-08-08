@@ -1,0 +1,32 @@
+﻿@using Leccion2.Models
+@model List<ClienteModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <td width="10%">@Html.LabelFor(p => Model[0].IIDCLIENTE)</td>
+            <td>@Html.LabelFor(p => Model[0].NOMBRE)</td>
+            <td>@Html.LabelFor(p => Model[0].APPATERNO)</td>
+            <td>@Html.LabelFor(p => Model[0].APMATERNO)</td>
+            <td>@Html.LabelFor(p => Model[0].TELEFONOFIJO)</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.IIDCLIENTE</td>
+                <td>@item.NOMBRE</td>
+                <td>@item.APPATERNO</td>
+                <td>@item.APMATERNO</td>
+                <td>@item.TELEFONOFIJO</td>
+            </tr>
+        }
+    </tbody>
+</table>

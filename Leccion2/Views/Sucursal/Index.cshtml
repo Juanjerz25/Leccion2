@@ -1,0 +1,29 @@
+﻿@using Leccion2.Models
+@model List<SucursalModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Lista Sucursales</h2>
+@Html.ActionLink("Agregar", "Agregar", "Sucursal", null, new { @class = "btn btn-primary" })
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <td width="10%">@Html.LabelFor(p => Model[0].IIDSUCURSAL)</td>
+            <td>@Html.LabelFor(p => Model[0].NOMBRE)</td>
+            <td>@Html.LabelFor(p => Model[0].TELEFONO)</td>
+            <td>@Html.LabelFor(p => Model[0].EMAIL)</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.IIDSUCURSAL</td>
+                <td>@item.NOMBRE</td>
+                <td>@item.TELEFONO</td>
+                <td>@item.EMAIL</td>
+            </tr>
+        }
+    </tbody>
+</table>

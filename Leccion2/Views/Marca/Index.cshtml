@@ -1,0 +1,28 @@
+﻿@using Leccion2.Models
+@model List<MarcaModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+@Html.ActionLink("Agregar", "Agregar", "Marca", null, new { @class="btn btn-primary"})
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <td width="10%">@Html.LabelFor(p=>Model[0].IIDMARCA)</td>
+            <td width="10%">@Html.LabelFor(p=>Model[0].NOMBRE)</td>
+            <td width="70%">@Html.LabelFor(p=>Model[0].DESCRIPCION)</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@item.IIDMARCA</td>
+            <td>@item.NOMBRE</td>
+            <td>@item.DESCRIPCION</td>
+        </tr>
+        }
+    </tbody>
+</table>
+
