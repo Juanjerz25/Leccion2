@@ -35,5 +35,40 @@ namespace Leccion2.Controllers
             }
             return View(listaCliente);
         }
+
+        public ActionResult Agregar()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Agregar(ClienteModel clienteEntrante)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(clienteEntrante);
+            }
+            else
+            {
+                using (var bd = new BDPasajeEntities())
+                {
+                    Cliente cliente = new Cliente();
+                    cliente.IIDCLIENTE = clienteEntrante.IIDCLIENTE;
+                    cliente.NOMBRE = clienteEntrante.NOMBRE;
+                    cliente.APPATERNO = clienteEntrante.APPATERNO;
+                    cliente.APMATERNO = clienteEntrante.APMATERNO;
+                    cliente.EMAIL = clienteEntrante.EMAIL;
+                    cliente.DIRECCION = clienteEntrante.DIRECCION;
+                    cliente.IIDSEXO = clienteEntrante.IIDSEXO;
+                    cliente.TELEFONOFIJO = clienteEntrante.TELEFONOFIJO;
+                    cliente.TELEFONOCELULAR = clienteEntrante.TELEFONOCELULAR;
+                    cliente.BHABILITADO = 1;
+
+                    bd.Cliente.Add(cliente);
+                    bd.SaveChanges();
+                }
+                return RedirectToAction("Index");
+            }
+        }
     }
 }

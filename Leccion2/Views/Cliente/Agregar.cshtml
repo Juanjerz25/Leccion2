@@ -1,0 +1,70 @@
+﻿@using Leccion2.Models
+@model ClienteModel
+
+
+@{
+    ViewBag.Title = "Agregar";
+}
+
+<h2>Agregar</h2>
+
+<div class="row">
+    <div class="col-md-6">
+        @using (Html.BeginForm("Agregar", "Cliente", FormMethod.Post))
+        {
+            <div>
+                @Html.LabelFor(p => p.NOMBRE)
+                @Html.TextBoxFor(p => p.NOMBRE, new { @class = "form-control" })
+                @Html.ValidationMessage("NOMBRE", new { @class = "text-danger" })
+            </div>
+
+            <div>
+                @Html.LabelFor(p => p.APPATERNO)
+                @Html.TextBoxFor(p => p.APPATERNO, new { @class = "form-control" })
+                @Html.ValidationMessage("APPATERNO", new { @class = "text-danger" })
+            </div>
+
+            <div>
+                @Html.LabelFor(p => p.APMATERNO)
+                @Html.TextBoxFor(p => p.APMATERNO, new { @class = "form-control" })
+                @Html.ValidationMessage("APMATERNO", new { @class = "text-danger" })
+            </div>
+
+            <div>
+                @Html.LabelFor(p => p.EMAIL)
+                @Html.TextBoxFor(p => p.EMAIL, new { @class = "form-control" })
+                @Html.ValidationMessage("EMAIL", new { @class = "text-danger" })
+            </div>
+
+            <div>
+                @Html.LabelFor(p => p.DIRECCION)
+                @Html.EditorFor(p => p.DIRECCION, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessage("DIRECCION", new { @class = "text-danger" })
+            </div>
+
+            //asdfasdf
+            <div>
+                @Html.LabelFor(p => p.IIDSEXO)
+                @Html.EditorFor(p => p.IIDSEXO, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessage("IIDSEXO", new { @class = "text-danger" })
+
+            </div>
+            <div>
+                @Html.LabelFor(p => p.TELEFONOFIJO)
+                @Html.EditorFor(p => p.TELEFONOFIJO, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessage("TELEFONOFIJO", new { @class = "text-danger" })
+            </div>
+
+            <div>
+                @Html.LabelFor(p => p.TELEFONOCELULAR)
+                @Html.EditorFor(p => p.TELEFONOCELULAR, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessage("TELEFONOCELULAR", new { @class = "text-danger" })
+            </div>
+            <br />
+            <div style="margin:auto">
+                <input type="submit" class="btn btn-primary" value="Guardar" />
+            </div>
+        }
+    </div>
+</div>
+
