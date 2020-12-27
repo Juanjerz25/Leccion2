@@ -1,0 +1,39 @@
+﻿@using Leccion2.Models
+@model List<ViajeModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Listado Viajes</h2>
+@*@Html.ActionLink("Agregar", "Agregar", "Viaje", null, new { @class = "btn btn-primary" })*@
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <td width="10%">@Html.LabelFor(p => Model[0].IIDVIAJE)</td>
+            <td>@Html.LabelFor(p => Model[0].IIDLUGARORIGEN)</td>
+            <td>@Html.LabelFor(p => Model[0].IIDLUGARDESTINO)</td>
+            <td>@Html.LabelFor(p => Model[0].PRECIO)</td>
+            <td>@Html.LabelFor(p => Model[0].FECHAVIAJE)</td>
+            <td>@Html.LabelFor(p => Model[0].IIDBUS)</td>
+            <td>@Html.LabelFor(p => Model[0].NUMEROASIENTOSDISPONIBLES)</td>
+            <td>@Html.LabelFor(p => Model[0].nombrefoto)</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@item.IIDVIAJE</td>
+            <td>@item.nombreLugarOrigen</td>
+            <td>@item.nombreLugarDestino</td>
+            <td>@item.PRECIO</td>
+            <td>@item.FECHAVIAJE</td>
+            <td>@item.nombreBus</td>
+            <td>@item.NUMEROASIENTOSDISPONIBLES</td>
+            <td>@item.nombrefoto</td>
+        </tr>
+        }
+    </tbody>
+</table>

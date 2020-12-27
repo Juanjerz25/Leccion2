@@ -35,9 +35,25 @@ namespace Leccion2.Controllers
             }
             return View(listaCliente);
         }
-
+        List<SelectListItem> listaSexo;
+        private void llenarSexo()
+        {
+            using (var bd = new BDPasajeEntities())
+            {
+                listaSexo = (from sexo in bd.Sexo
+                             where sexo.BHABILITADO == 1
+                             select new SelectListItem
+                             {
+                                 Text = sexo.NOMBRE,
+                                 Value = sexo.IIDSEXO.ToString()
+                             }).ToList();
+                listaSexo.Insert(0, new SelectListItem { Text = "--Seleccione", Value = "" });
+            }
+        }
         public ActionResult Agregar()
         {
+            llenarSexo();
+            ViewBag.lista = listaSexo;
             return View();
         }
 
@@ -46,6 +62,8 @@ namespace Leccion2.Controllers
         {
             if (!ModelState.IsValid)
             {
+                llenarSexo();
+                ViewBag.lista = listaSexo;
                 return View(clienteEntrante);
             }
             else
@@ -69,6 +87,31 @@ namespace Leccion2.Controllers
                 }
                 return RedirectToAction("Index");
             }
+        }
+
+        public ActionResult Editar(int id)
+        {
+            ClienteModel clienteModel = new ClienteModel();
+            using (var bd = new BDPasajeEntities())
+            {
+                Cliente cliente = bd.Cliente.Where(x => x.IIDCLIENTE.Equals(id)).FirstOrDefault();
+                clienteModel.IIDCLIENTE = cliente.IIDCLIENTE;
+                clienteModel.NOMBRE = cliente.NOMBRE;
+                clienteModel.APPATERNO = cliente.APPATERNO;
+                clienteModel.APMATERNO = cliente.APMATERNO;
+                clienteModel.EMAIL = cliente.EMAIL;
+                clienteModel.DIRECCION = cliente.DIRECCION;
+                clienteModel.IIDSEXO = cliente.IIDSEXO;
+                clienteModel.TELEFONOFIJO = cliente.TELEFONOFIJO;
+                clienteModel.TELEFONOCELULAR = cliente.TELEFONOCELULAR;
+                clienteModel.BHABILITADO = cliente.BHABILITADO;
+                clienteModel.bTieneUsuario = cliente.bTieneUsuario;
+                clienteModel.TIPOUSUARIO = cliente.TIPOUSUARIO;
+                llenarSexo();
+                ViewBag.lista = listaSexo;
+            }
+
+            return View(clienteModel);
         }
     }
 }

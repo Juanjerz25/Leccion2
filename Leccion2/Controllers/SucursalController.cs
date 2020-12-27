@@ -55,5 +55,24 @@ namespace Leccion2.Controllers
                 return RedirectToAction("Index");
             }
         }
+
+
+        public ActionResult Editar(int id)
+        {
+            SucursalModel sucursalModel = new SucursalModel();
+            using (var bd = new BDPasajeEntities())
+            {
+                Sucursal sucursal = bd.Sucursal.Where(x => x.IIDSUCURSAL.Equals(id)).FirstOrDefault();
+                sucursalModel.IIDSUCURSAL = sucursal.IIDSUCURSAL;
+                sucursalModel.NOMBRE = sucursal.NOMBRE;
+                sucursalModel.DIRECCION = sucursal.DIRECCION;
+                sucursalModel.TELEFONO = sucursal.TELEFONO;
+                sucursalModel.EMAIL = sucursal.EMAIL;
+                sucursalModel.FECHAAPERTURA = sucursal.FECHAAPERTURA;
+                sucursalModel.BHABILITADO = sucursal.BHABILITADO;
+
+            }
+            return View(sucursalModel);
+        }
     }
 }

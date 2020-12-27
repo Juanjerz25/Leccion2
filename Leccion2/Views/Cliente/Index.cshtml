@@ -5,7 +5,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Listado Clientes</h2>
 @Html.ActionLink("Agregar", "Agregar", "Cliente", null, new { @class = "btn btn-primary" })
 
 <table class="table table-bordered table-hover">
@@ -16,6 +16,7 @@
             <td>@Html.LabelFor(p => Model[0].APPATERNO)</td>
             <td>@Html.LabelFor(p => Model[0].APMATERNO)</td>
             <td>@Html.LabelFor(p => Model[0].TELEFONOFIJO)</td>
+            <td>Operaciones</td>
         </tr>
     </thead>
     <tbody>
@@ -27,6 +28,10 @@
                 <td>@item.APPATERNO</td>
                 <td>@item.APMATERNO</td>
                 <td>@item.TELEFONOFIJO</td>
+                <td>
+                    @Html.ActionLink(" ", "Editar", "Cliente", new { id = item.IIDCLIENTE }, new { @class = "glyphicon glyphicon-edit btn btn-primary" })
+                    @Html.ActionLink(" ", "Eliminar", "Cliente", new { id = item.IIDCLIENTE }, new { @class = "glyphicon glyphicon-trash btn btn-danger" })
+                </td>
             </tr>
         }
     </tbody>

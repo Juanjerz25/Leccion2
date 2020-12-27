@@ -53,5 +53,21 @@ namespace Leccion2.Controllers
                 return RedirectToAction("Index");
             }           
         }
+
+        public ActionResult Editar(int id)
+        {
+            MarcaModel marcaModel = new MarcaModel();
+
+            using(var bd= new BDPasajeEntities())
+            {
+                Marca marca = bd.Marca.Where(x => x.IIDMARCA.Equals(id)).FirstOrDefault();
+                marcaModel.IIDMARCA = marca.IIDMARCA;
+                marcaModel.NOMBRE = marca.NOMBRE;
+                marcaModel.DESCRIPCION = marca.DESCRIPCION;
+                marcaModel.BHABILITADO = marca.BHABILITADO;
+            }
+            return View(marcaModel);
+        }
+
     }
 }

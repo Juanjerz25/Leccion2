@@ -13,17 +13,22 @@
             <td>@Html.LabelFor(p => Model[0].NOMBRE)</td>
             <td>@Html.LabelFor(p => Model[0].TELEFONO)</td>
             <td>@Html.LabelFor(p => Model[0].EMAIL)</td>
+            <td>Operaciones</td>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>@item.IIDSUCURSAL</td>
-                <td>@item.NOMBRE</td>
-                <td>@item.TELEFONO</td>
-                <td>@item.EMAIL</td>
-            </tr>
+        <tr>
+            <td>@item.IIDSUCURSAL</td>
+            <td>@item.NOMBRE</td>
+            <td>@item.TELEFONO</td>
+            <td>@item.EMAIL</td>
+            <td>
+                @Html.ActionLink(" ", "Editar", "Sucursal", new { id = item.IIDSUCURSAL }, new { @class = "glyphicon glyphicon-edit btn btn-primary" })
+                @Html.ActionLink(" ", "Eliminar", "Sucursal", new { id = item.IIDSUCURSAL }, new { @class = "glyphicon glyphicon-trash btn btn-danger" })
+            </td>
+        </tr>
         }
     </tbody>
 </table>

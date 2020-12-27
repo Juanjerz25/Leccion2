@@ -10,8 +10,9 @@
     <thead>
         <tr>
             <td width="10%">@Html.LabelFor(p=>Model[0].IIDMARCA)</td>
-            <td width="10%">@Html.LabelFor(p=>Model[0].NOMBRE)</td>
-            <td width="70%">@Html.LabelFor(p=>Model[0].DESCRIPCION)</td>
+            <td width="20%">@Html.LabelFor(p=>Model[0].NOMBRE)</td>
+            <td width="60%">@Html.LabelFor(p=>Model[0].DESCRIPCION)</td>
+            <td width="10%">Operaciones</td>
         </tr>
     </thead>
     <tbody>
@@ -21,6 +22,10 @@
             <td>@item.IIDMARCA</td>
             <td>@item.NOMBRE</td>
             <td>@item.DESCRIPCION</td>
+            <td>
+                @Html.ActionLink(" ", "Editar", "Marca", new { id = item.IIDMARCA }, new { @class = "glyphicon glyphicon-edit btn btn-primary" })
+                @Html.ActionLink(" ", "Eliminar", "Marca", new { id = item.IIDMARCA }, new { @class = "glyphicon glyphicon-trash btn btn-danger" })
+            </td>
         </tr>
         }
     </tbody>

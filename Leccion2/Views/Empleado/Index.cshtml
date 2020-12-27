@@ -1,0 +1,42 @@
+﻿@using Leccion2.Models
+@model List<EmpleadoModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Lista Empleados</h2>
+@Html.ActionLink("Agregar", "Agregar", "Empleado", null, new { @class = "btn btn-primary" })
+
+<table class="table table-hover table-bordered">
+    <thead>
+        <tr>
+            <td>@Html.LabelFor(p => Model[0].IIDEMPLEADO)</td>
+            <td>@Html.LabelFor(p => Model[0].NOMBRE)</td>
+            <td>@Html.LabelFor(p => Model[0].APMATERNO)</td>
+            <td>@Html.LabelFor(p => Model[0].IIDSEXO)</td>
+            <td>@Html.LabelFor(p => Model[0].IIDTIPOUSUARIO)</td>
+            <td>@Html.LabelFor(p => Model[0].IIDTIPOCONTRATO)</td>
+            <td>Operaciones</td>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@item.IIDEMPLEADO</td>
+            <td>@item.NOMBRE</td>
+            <td>@item.APMATERNO</td>
+            <td>@item.NombreTipoSexo</td>
+            <td>@item.NombreTipoUsuario</td>
+            <td>@item.NombreTipoContrato</td>
+            <td>
+                @Html.ActionLink(" ", "Editar", "Empleado", new { id = item.IIDEMPLEADO }, new { @class = "glyphicon glyphicon-edit btn btn-primary" })
+                @Html.ActionLink(" ", "Eliminar", "Empleado", new { id = item.IIDEMPLEADO }, new { @class = "glyphicon glyphicon-trash btn btn-danger" })
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+

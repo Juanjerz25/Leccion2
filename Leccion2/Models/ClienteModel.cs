@@ -28,6 +28,7 @@ namespace Leccion2.Models
         [EmailAddress(ErrorMessage ="Ingrese un email válido")]
         public string EMAIL { get; set; }
         [Display(Name = "Dirección")]
+        [DataType(DataType.MultilineText)]
         [StringLength(200, ErrorMessage = "Longiutd máxima 200")]
         public string DIRECCION { get; set; }
         [Display(Name = "Sexo")]

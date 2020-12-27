@@ -3,16 +3,26 @@
 
 
 @{
-    ViewBag.Title = "Agregar";
+    ViewBag.Title = "Editar";
     List<SelectListItem> listaSexo = (List<SelectListItem>)ViewBag.lista;
 }
 
-<h2>Agregar</h2>
+<h2>Editar</h2>
+
+
+
+
 
 <div class="row">
     <div class="col-md-6">
-        @using (Html.BeginForm("Agregar", "Cliente", FormMethod.Post))
+        @using (Html.BeginForm("Editar", "Cliente", FormMethod.Post))
         {
+            <div>
+                @Html.LabelFor(p => p.IIDCLIENTE)
+                @Html.TextBoxFor(p => p.IIDCLIENTE, new { @class = "form-control", @readOnly=true })
+                @Html.ValidationMessage("IIDCLIENTE", new { @class = "text-danger" })
+            </div>
+
             <div>
                 @Html.LabelFor(p => p.NOMBRE)
                 @Html.TextBoxFor(p => p.NOMBRE, new { @class = "form-control" })
@@ -46,7 +56,7 @@
             //asdfasdf
             <div>
                 @Html.LabelFor(p => p.IIDSEXO)
-                @Html.DropDownList("IIDSEXO", listaSexo, null, new { @class = "form-control"})
+                @Html.DropDownList("IIDSEXO", listaSexo, null, new { @class = "form-control" })
                 @Html.ValidationMessage("IIDSEXO", new { @class = "text-danger" })
 
             </div>
@@ -68,4 +78,6 @@
         }
     </div>
 </div>
+
+
 
