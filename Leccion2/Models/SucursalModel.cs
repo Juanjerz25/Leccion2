@@ -30,7 +30,7 @@ namespace Leccion2.Models
         public string EMAIL { get; set; }
         [Required]
         [DataType(DataType.Date)]
-        //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)] no hay necesidad
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "Fecha Apertura")]
         public DateTime? FECHAAPERTURA { get; set; }
         public int? BHABILITADO { get; set; }

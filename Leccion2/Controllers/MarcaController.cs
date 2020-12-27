@@ -69,5 +69,25 @@ namespace Leccion2.Controllers
             return View(marcaModel);
         }
 
+        [HttpPost]
+        public ActionResult Editar(MarcaModel marcaModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(marcaModel);
+            }
+            else
+            {
+                using (var bd = new BDPasajeEntities())
+                {
+                    Marca oMarca = bd.Marca.Where(x=>x.IIDMARCA.Equals(marcaModel.IIDMARCA)).FirstOrDefault();
+                    oMarca.NOMBRE = marcaModel.NOMBRE;
+                    oMarca.DESCRIPCION = marcaModel.DESCRIPCION;
+                    oMarca.BHABILITADO = 1;
+                    bd.SaveChanges();
+                }
+                return RedirectToAction("Index");
+            }
+        }
     }
 }

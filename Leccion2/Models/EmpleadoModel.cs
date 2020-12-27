@@ -25,6 +25,7 @@ namespace Leccion2.Models
         [Display(Name = "Fecha Contrato")]
         [Required]
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? FECHACONTRATO { get; set; }
         [Display(Name = "Sueldo")]
         [Range(0,100000,ErrorMessage ="Fuera de Ragon")]

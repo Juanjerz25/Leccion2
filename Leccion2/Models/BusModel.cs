@@ -23,6 +23,7 @@ namespace Leccion2.Models
         [Display(Name = "Fecha de Compra")]
         [Required]
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? FECHACOMPRA { get; set; }
         [Display(Name = "Tipo de Modelo")]
         [Required]

@@ -17,6 +17,7 @@
             <td>@Html.LabelFor(p => Model[0].FECHACOMPRA)</td>
             <td>@Html.LabelFor(p => Model[0].IIDMODELO)</td>
             <td>@Html.LabelFor(p => Model[0].IIDMARCA)</td>
+            <td>Operaciones</td>
 
 
         </tr>
@@ -24,15 +25,19 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>@item.IIDBUS</td>
-                <td>@item.nombreSucursal</td>
-                <td>@item.nombreTipoBus</td>
-                <td>@item.PLACA</td>
-                <td>@item.FECHACOMPRA</td>
-                <td>@item.nombreTipoModelo</td>
-                <td>@item.nombreMarca</td>
-            </tr>
+        <tr>
+            <td>@item.IIDBUS</td>
+            <td>@item.nombreSucursal</td>
+            <td>@item.nombreTipoBus</td>
+            <td>@item.PLACA</td>
+            <td>@item.FECHACOMPRA</td>
+            <td>@item.nombreTipoModelo</td>
+            <td>@item.nombreMarca</td>
+            <td>
+                @Html.ActionLink(" ", "Editar", "Bus", new { id = item.IIDBUS }, new { @class = "glyphicon glyphicon-edit btn btn-primary" })
+                @Html.ActionLink(" ", "Eliminar", "Bus", new { id = item.IIDBUS }, new { @class = "glyphicon glyphicon-trash btn btn-danger" })
+            </td>
+        </tr>
         }
     </tbody>
 </table>

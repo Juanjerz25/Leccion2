@@ -20,11 +20,12 @@ namespace Leccion2.Models
         [Required]
         public decimal? PRECIO { get; set; }
         [Display(Name = "Fecha de Viaje")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Required]
+        [DataType(DataType.Date)]
         public DateTime? FECHAVIAJE { get; set; }
         [Display(Name = "Bus")]
         [Required]
-        [DataType(DataType.Date)]
         public int? IIDBUS { get; set; }
         [Display(Name = "Número de Asientos Disponibles")]
         [Required]

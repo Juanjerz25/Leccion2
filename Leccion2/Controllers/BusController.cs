@@ -160,5 +160,28 @@ namespace Leccion2.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Editar(int id)
+        {
+            BusModel busModel = new BusModel();
+            llenarCombos();
+            using (var bd = new BDPasajeEntities())
+            {
+                Bus bus = bd.Bus.Where(x => x.IIDBUS.Equals(id)).FirstOrDefault();
+                busModel.IIDBUS = bus.IIDBUS;
+                busModel.IIDSUCURSAL = bus.IIDSUCURSAL;
+                busModel.IIDTIPOBUS = bus.IIDTIPOBUS;
+                busModel.PLACA = bus.PLACA;
+                busModel.FECHACOMPRA = bus.FECHACOMPRA;
+                busModel.IIDMODELO = bus.IIDMODELO;
+                busModel.NUMEROFILAS = bus.NUMEROFILAS;
+                busModel.NUMEROCOLUMNAS = bus.NUMEROCOLUMNAS;
+                busModel.BHABILITADO = bus.BHABILITADO;
+                busModel.DESCRIPCION = bus.DESCRIPCION;
+                busModel.OBSERVACION = bus.OBSERVACION;
+                busModel.IIDMARCA = bus.IIDMARCA;
+
+            }
+            return View(busModel);
+        }
     }
 }
