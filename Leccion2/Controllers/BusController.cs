@@ -183,5 +183,33 @@ namespace Leccion2.Controllers
             }
             return View(busModel);
         }
+
+        [HttpPost]
+        public ActionResult Editar(BusModel busModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                llenarCombos();
+                return View(busModel);
+            }
+
+
+            using (var bd = new BDPasajeEntities())
+            {
+                Bus bus = bd.Bus.Where(x => x.IIDBUS.Equals(busModel.IIDBUS)).FirstOrDefault();
+                bus.IIDSUCURSAL = busModel.IIDSUCURSAL;
+                bus.IIDTIPOBUS = busModel.IIDTIPOBUS;
+                bus.PLACA = busModel.PLACA;
+                bus.FECHACOMPRA = busModel.FECHACOMPRA;
+                bus.IIDMODELO = busModel.IIDMODELO;
+                bus.NUMEROFILAS = busModel.NUMEROFILAS;
+                bus.NUMEROCOLUMNAS = busModel.NUMEROCOLUMNAS;
+                bus.DESCRIPCION = busModel.DESCRIPCION;
+                bus.OBSERVACION = busModel.OBSERVACION;
+                bus.IIDMARCA = busModel.IIDMARCA;
+                bd.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
     }
 }

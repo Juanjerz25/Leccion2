@@ -1,0 +1,76 @@
+﻿@model Leccion2.Models.ViajeModel
+
+@{
+    ViewBag.Title = "Agregar";
+    List<SelectListItem> listaBuses = (List<SelectListItem>)ViewBag.listaBuses;
+    List<SelectListItem> listaLugares = (List<SelectListItem>)ViewBag.listaLugares;
+}
+
+<h2>Agregar Viaje</h2>
+
+@using (Html.BeginForm("Agregar","Viaje",FormMethod.Post)) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>ViajeModel</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IIDLUGARORIGEN, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("IIDLUGARORIGEN", listaLugares, null, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.IIDLUGARORIGEN, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IIDLUGARDESTINO, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("IIDLUGARORIGEN", listaLugares, null, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.IIDLUGARDESTINO, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PRECIO, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PRECIO, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+                @Html.ValidationMessageFor(model => model.PRECIO, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FECHAVIAJE, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FECHAVIAJE, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FECHAVIAJE, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IIDBUS, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("IIDBUS", listaBuses, null, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.IIDBUS, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NUMEROASIENTOSDISPONIBLES, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NUMEROASIENTOSDISPONIBLES, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NUMEROASIENTOSDISPONIBLES, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+                @Html.ActionLink("Regresar", "Index", "Viaje", null, new { @class = "btn btn-danger" })
+            </div>
+        </div>
+    </div>
+}
+

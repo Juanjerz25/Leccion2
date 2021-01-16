@@ -16,7 +16,8 @@ namespace Leccion2.Models
         [Display(Name = "Lugar de Destino")]
         [Required]
         public int? IIDLUGARDESTINO { get; set; }
-        [Display(Name = "Precio")]
+        [Display(Name = "Precio")] 
+        [Range(0,100000,ErrorMessage ="Rango fuera de indices")]
         [Required]
         public decimal? PRECIO { get; set; }
         [Display(Name = "Fecha de Viaje")]

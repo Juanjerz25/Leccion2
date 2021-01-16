@@ -29,15 +29,19 @@ namespace Leccion2.Models
         public string EMAIL { get; set; }
         [Display(Name = "Dirección")]
         [DataType(DataType.MultilineText)]
+        [Required]
         [StringLength(200, ErrorMessage = "Longiutd máxima 200")]
         public string DIRECCION { get; set; }
         [Display(Name = "Sexo")]
+        [Required]
         public int? IIDSEXO { get; set; }
         [Display(Name = "Telefono Fijo")]
+        [Required]
         [StringLength(10, ErrorMessage = "Longiutd máxima 10")]
         public string TELEFONOFIJO { get; set; }
         [StringLength(10, ErrorMessage = "Longiutd máxima 10")]
         [Display(Name = "Celular")]
+        [Required]
         public string TELEFONOCELULAR { get; set; }
         public int? BHABILITADO { get; set; }
         public int? bTieneUsuario { get; set; }

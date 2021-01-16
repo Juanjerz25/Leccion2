@@ -158,6 +158,30 @@ namespace Leccion2.Controllers
             return View(empleadoModel);
         }
 
+        [HttpPost]
+        public ActionResult Editar(EmpleadoModel empleadoModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                listarCombos();
+                return View(empleadoModel);
+            }
 
+            using (var bd = new BDPasajeEntities())
+            {
+                Empleado empleado = bd.Empleado.Where(x => x.IIDEMPLEADO.Equals(empleadoModel.IIDEMPLEADO)).FirstOrDefault();
+                empleado.NOMBRE = empleadoModel.NOMBRE;
+                empleado.APPATERNO = empleadoModel.APPATERNO;
+                empleado.APMATERNO = empleadoModel.APMATERNO;
+                empleado.FECHACONTRATO = empleadoModel.FECHACONTRATO;
+                empleado.SUELDO = empleadoModel.SUELDO;
+                empleado.IIDTIPOUSUARIO = empleadoModel.IIDTIPOUSUARIO;
+                empleado.IIDTIPOCONTRATO = empleadoModel.IIDTIPOCONTRATO;
+                empleado.IIDSEXO = empleadoModel.IIDSEXO;
+                empleado.TIPOUSUARIO = empleadoModel.TIPOUSUARIO;
+                bd.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
     }
 }

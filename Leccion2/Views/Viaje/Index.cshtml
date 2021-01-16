@@ -6,7 +6,7 @@
 }
 
 <h2>Listado Viajes</h2>
-@*@Html.ActionLink("Agregar", "Agregar", "Viaje", null, new { @class = "btn btn-primary" })*@
+@Html.ActionLink("Agregar", "Agregar", "Viaje", null, new { @class = "btn btn-primary" })
 
 <table class="table table-bordered table-hover">
     <thead>
@@ -19,6 +19,7 @@
             <td>@Html.LabelFor(p => Model[0].IIDBUS)</td>
             <td>@Html.LabelFor(p => Model[0].NUMEROASIENTOSDISPONIBLES)</td>
             <td>@Html.LabelFor(p => Model[0].nombrefoto)</td>
+            <td>Operaciones</td>
         </tr>
     </thead>
     <tbody>
@@ -33,6 +34,10 @@
             <td>@item.nombreBus</td>
             <td>@item.NUMEROASIENTOSDISPONIBLES</td>
             <td>@item.nombrefoto</td>
+            <td>
+                @Html.ActionLink(" ", "Editar", "Viaje", new { id = item.IIDVIAJE }, new { @class = "glyphicon glyphicon-edit btn btn-primary" })
+                @Html.ActionLink(" ", "Eliminar", "Viaje", new { id = item.IIDVIAJE }, new { @class = "glyphicon glyphicon-trash btn btn-danger" })
+            </td>
         </tr>
         }
     </tbody>

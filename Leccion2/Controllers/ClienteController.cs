@@ -113,5 +113,32 @@ namespace Leccion2.Controllers
 
             return View(clienteModel);
         }
+
+        [HttpPost]
+        public ActionResult Editar(ClienteModel clienteModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                llenarSexo();
+                ViewBag.lista = listaSexo;
+                return View(clienteModel);
+            }
+
+            using (var bd = new BDPasajeEntities())
+            {
+                Cliente cliente = bd.Cliente.Where(x => x.IIDCLIENTE.Equals(clienteModel.IIDCLIENTE)).FirstOrDefault();
+                cliente.IIDCLIENTE = clienteModel.IIDCLIENTE;
+                cliente.NOMBRE = clienteModel.NOMBRE;
+                cliente.APPATERNO = clienteModel.APPATERNO;
+                cliente.APMATERNO = clienteModel.APMATERNO;
+                cliente.EMAIL = clienteModel.EMAIL;
+                cliente.DIRECCION = clienteModel.DIRECCION;
+                cliente.IIDSEXO = clienteModel.IIDSEXO;
+                cliente.TELEFONOFIJO = clienteModel.TELEFONOFIJO;
+                cliente.TELEFONOCELULAR = clienteModel.TELEFONOCELULAR;
+                bd.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
     }
 }

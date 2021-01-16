@@ -44,5 +44,79 @@ namespace Leccion2.Controllers
 
             return View(listaViajes);
         }
+
+        List<SelectListItem> listaLugares;
+        private void llenarLugar()
+        {
+            using (var bd = new BDPasajeEntities())
+            {
+                listaLugares = (from item in bd.Lugar
+                                where item.BHABILITADO == 1
+                                select new SelectListItem
+                                {
+                                    Text = item.NOMBRE,
+                                    Value = item.IIDLUGAR.ToString()
+                                }).ToList();
+                listaLugares.Insert(0, new SelectListItem { Text = "--Seleccione", Value = "" });
+                ViewBag.listaLugares = listaLugares;
+            }
+        }
+
+        List<SelectListItem> listaBuses;
+        private void llenarBus()
+        {
+            using (var bd = new BDPasajeEntities())
+            {
+                listaBuses = (from item in bd.Bus
+                              where item.BHABILITADO == 1
+                              select new SelectListItem
+                              {
+                                  Text = item.PLACA,
+                                  Value = item.IIDBUS.ToString()
+                              }).ToList();
+                listaBuses.Insert(0, new SelectListItem { Text = "--Seleccione", Value = "" });
+                ViewBag.listaBuses = listaBuses;
+            }
+        }
+
+        public void listarCombos()
+        {
+            llenarBus();
+            llenarLugar();
+        }
+
+        public ActionResult Agregar()
+        {
+            listarCombos();
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Agregar(ViajeModel viajeModel)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                return View(viajeModel);
+            }
+
+
+            using (var bd = new BDPasajeEntities())
+            {
+                Viaje oViaje = new Viaje();
+                oViaje.IIDLUGARORIGEN = viajeModel.IIDLUGARORIGEN;
+                oViaje.IIDLUGARDESTINO = viajeModel.IIDLUGARDESTINO;
+                oViaje.PRECIO = viajeModel.PRECIO;
+                oViaje.FECHAVIAJE = viajeModel.FECHAVIAJE;
+                oViaje.IIDBUS = viajeModel.IIDBUS;
+                oViaje.NUMEROASIENTOSDISPONIBLES = viajeModel.NUMEROASIENTOSDISPONIBLES;
+                oViaje.BHABILITADO = 1;
+                oViaje.FOTO = viajeModel.FOTO;
+                oViaje.nombrefoto = viajeModel.nombrefoto;
+
+                bd.Viaje.Add(oViaje);
+                bd.SaveChanges();
+            }
+            return View();
+        }
     }
 }
