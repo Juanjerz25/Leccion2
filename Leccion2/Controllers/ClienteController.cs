@@ -10,6 +10,7 @@ namespace Leccion2.Controllers
     public class ClienteController : Controller
     {
         // GET: Cliente
+        //hola
         public ActionResult Index()
         {
             List<ClienteModel> listaCliente = null;
